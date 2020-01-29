@@ -26,6 +26,17 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable(value = "id") Long productId) {
+        return this.fetchProduct(productId);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable(value = "id") Long productId) {
+        Product product = this.fetchProduct(productId);
+        productRepository.delete(product);
+    }
+
+    public Product fetchProduct(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(
             () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found")
         );
