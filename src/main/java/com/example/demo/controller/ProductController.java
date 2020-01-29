@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.demo.model.Product;
 import com.example.demo.repository.ProductRepository;
 
@@ -19,9 +21,14 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
     
-    @GetMapping("/")
+    @GetMapping("")
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @PostMapping("")
+    public Product createProduct(@Valid @RequestBody Product product) {
+        return productRepository.save(product);
     }
 
     @GetMapping("/{id}")
