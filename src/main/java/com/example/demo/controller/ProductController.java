@@ -26,6 +26,7 @@ public class ProductController {
     }
 
     @PostMapping("")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public Product createProduct(@Valid @RequestBody Product product) {
         return productRepository.save(product);
     }
