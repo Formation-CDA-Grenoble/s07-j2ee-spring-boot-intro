@@ -9,7 +9,6 @@ import com.example.demo.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,6 +27,20 @@ public class ProductController {
 
     @PostMapping("")
     public Product createProduct(@Valid @RequestBody Product product) {
+        return productRepository.save(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@Valid @RequestBody Product newProduct) {
+        Product product = this.fetchProduct(newProduct.getId());
+        product.setName(newProduct.getName());
+        product.setSerialNumber(newProduct.getSerialNumber());
+        product.setDescription(newProduct.getDescription());
+        product.setPrice(newProduct.getPrice());
+        product.setStock(newProduct.getStock());
+        product.setWeight(newProduct.getWeight());
+        product.setPicture(newProduct.getPicture());
+        product.setBrandId(newProduct.getBrandId());
         return productRepository.save(product);
     }
 
