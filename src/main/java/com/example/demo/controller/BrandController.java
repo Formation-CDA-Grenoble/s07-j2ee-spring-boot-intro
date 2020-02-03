@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/brands")
+@CrossOrigin
 public class BrandController {
 
     // Injection de dépendance
