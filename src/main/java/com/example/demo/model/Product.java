@@ -98,15 +98,15 @@ public class Product {
     public void setPicture(String picture) {
     	this.picture = picture;
     }
-    
-    @Column(name = "brand_id", nullable = false)
-    private int brandId;
 
+    @ManyToOne
+    @JoinColumn
+    private Brand brand;
 
-    public int getBrandId() {
-    	return this.brandId;
+    public Brand getBrand() {
+        return this.brand;
     }
-    public void setBrandId(int brandId) {
-    	this.brandId = brandId;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }

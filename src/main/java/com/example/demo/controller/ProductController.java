@@ -44,7 +44,7 @@ public class ProductController {
         product.setStock(newProduct.getStock());
         product.setWeight(newProduct.getWeight());
         product.setPicture(newProduct.getPicture());
-        product.setBrandId(newProduct.getBrandId());
+        product.setBrand(newProduct.getBrand());
         return productRepository.save(product);
     }
 
