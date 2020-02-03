@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,6 +23,18 @@ public class Brand {
 
     @Column(name = "country", nullable = false)
     private String country;
+
+    @OneToMany(mappedBy = "brand")
+    @JsonIgnoreProperties("brand")
+    private Set<Product> products;
+
+
+    public Set<Product> getProducts() {
+    	return this.products;
+    }
+    public void setProducts(Set<Product> products) {
+    	this.products = products;
+    }
 
 
     public String getCountry() {

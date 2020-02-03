@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -101,6 +103,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties("products")
     private Brand brand;
 
     public Brand getBrand() {
