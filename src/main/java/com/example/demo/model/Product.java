@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -120,5 +122,21 @@ public class Product {
     }
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY,
+    mappedBy = "products",
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JsonIgnoreProperties("products")
+    private Set<Order> orders;
+
+    public Set<Order> getOrders() {
+    	return this.orders;
+    }
+    public void setOrders(Set<Order> orders) {
+    	this.orders = orders;
     }
 }
