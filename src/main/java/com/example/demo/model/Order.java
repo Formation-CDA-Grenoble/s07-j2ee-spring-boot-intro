@@ -27,6 +27,10 @@ public class Order {
     @Column(name = "status")
     private int status;
 
+    @ManyToOne
+    @JsonIgnoreProperties("orders")
+    private User user;
+
     @ManyToMany(fetch = FetchType.LAZY,
     cascade = {
         CascadeType.PERSIST,
@@ -38,6 +42,13 @@ public class Order {
     @JsonIgnoreProperties("orders")
     private Set<Product> products;
 
+
+    public User getUser() {
+    	return this.user;
+    }
+    public void setUser(User user) {
+    	this.user = user;
+    }
 
     public Set<Product> getProducts() {
     	return this.products;
